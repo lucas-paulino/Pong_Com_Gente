@@ -2,12 +2,12 @@ import processing.serial.*;
 import processing.sound.*;
 SoundFile ponto, hit;
 Serial perto;
-int ariaDeteccao = 60;
+int ariaDeteccao = 120;
 float valor01 = 3, valor02 = 3;
 
 boolean gameStart = false;
-int leftColor = 128, rightColor = 128, diam = 40, rectSize1 = 200, rectSize2 = 200, rectWidth = 20;
-float x, y, speedX = -5, speedY = -5;
+int leftColor = 128, rightColor = 128, diam = 30, rectSize1 = 200, rectSize2 = 200, rectWidth = 20;
+float x, y, speedX = -4, speedY = -4;
 int posY1, posY2, pontos_p1=0, pontos_p2=0;
   
 void setup() {
@@ -26,9 +26,9 @@ void draw() {
   background(20); 
   stroke(240);
   line(width/2,0,width/2,height);
-  
-  text(pontos_p1,width/4,40);
-  text(pontos_p2,width*0.75,40); 
+  textSize(72);
+  text(pontos_p1,width/4,height/2);
+  text(pontos_p2,width*0.75,height/2); 
   
   noStroke();
   fill(240);
@@ -102,7 +102,7 @@ void serialEvent (Serial perto){
       valor01 = ariaDeteccao; 
     }
     
-    float posicao01 = map(valor01, 3, ariaDeteccao, 0, height);
+    float posicao01 = map(valor01, 3, ariaDeteccao, height, 0);
     posY1 = int(posicao01);  
   } 
   if(inString.charAt(0)=='e'){    
@@ -113,7 +113,7 @@ void serialEvent (Serial perto){
       valor02 = ariaDeteccao; 
     }
     
-    float posicao02 = map(valor02, 3, ariaDeteccao, 0, height);
+    float posicao02 = map(valor02, 3, ariaDeteccao, height, 0);
     posY2 = int(posicao02); 
   }
 }
